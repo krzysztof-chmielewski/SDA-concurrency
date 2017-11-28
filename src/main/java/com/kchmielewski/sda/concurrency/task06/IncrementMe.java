@@ -1,4 +1,4 @@
-package com.kchmielewski.sda.concurrency.test06;
+package com.kchmielewski.sda.concurrency.task06;
 
 public class IncrementMe {
     private int number;

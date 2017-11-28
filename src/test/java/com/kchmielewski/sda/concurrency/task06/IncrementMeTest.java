@@ -1,4 +1,4 @@
-package com.kchmielewski.sda.concurrency.test06;
+package com.kchmielewski.sda.concurrency.task06;
 
 import org.junit.Test;
 
