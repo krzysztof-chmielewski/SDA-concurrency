@@ -26,10 +26,4 @@ public class SynchronizeMyself {
 
         return number;
     }
-
-    private void increment() {
-        synchronized (this) {
-            number++;
-        }
-    }
 }
