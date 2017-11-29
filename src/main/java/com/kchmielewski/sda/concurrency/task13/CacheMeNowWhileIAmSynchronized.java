@@ -1,11 +1,10 @@
 package com.kchmielewski.sda.concurrency.task13;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class CacheMeNowWhileIAmSynchronized {
     private final Map<Integer, List<Integer>> cache = new HashMap<>();
@@ -15,9 +14,20 @@ public class CacheMeNowWhileIAmSynchronized {
             return cache.get(n);
         }
         List<Integer> result = new CopyOnWriteArrayList<>();
-        List<Integer> numbers = IntStream.range(0, n).boxed().collect(Collectors.toList());
 
-        numbers.forEach(i -> new Thread(() -> result.add(i * i)).start());
+        List<Thread> threads = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            int finalI = i;
+            threads.add(new Thread(() -> result.add(finalI * finalI)));
+            threads.get(i).start();
+        }
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         cache.put(n, result);
 

@@ -1,23 +1,21 @@
-package com.kchmielewski.sda.concurrency.task12;
+package com.kchmielewski.sda.concurrency.task13;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CacheMeNowTest {
+public class CacheMeNowWhileIAmSynchronizedTest {
     @Test
     public void createsListOfGivenSize() throws Exception {
-        CacheMeNow cacheMeNow = new CacheMeNow();
+        CacheMeNowWhileIAmSynchronized cacheMeNow = new CacheMeNowWhileIAmSynchronized();
 
         assertThat(cacheMeNow.createSquaresList(10000)).hasSize(10000);
-
     }
 
     @Test
     public void sameParameterCallsReturnsSameObject() throws Exception {
-        CacheMeNow cacheMeNow = new CacheMeNow();
+        CacheMeNowWhileIAmSynchronized cacheMeNow = new CacheMeNowWhileIAmSynchronized();
 
         assertThat(cacheMeNow.createSquaresList(10000)).isSameAs(cacheMeNow.createSquaresList(10000));
     }
-
 }
