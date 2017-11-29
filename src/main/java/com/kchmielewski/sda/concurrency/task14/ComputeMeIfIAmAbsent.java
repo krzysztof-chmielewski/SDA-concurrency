@@ -16,7 +16,6 @@ public class ComputeMeIfIAmAbsent {
             List<Integer> numbers = IntStream.range(0, n).boxed().collect(Collectors.toList());
 
             numbers.forEach(i -> new Thread(() -> result.add(i * i)).start());
-            System.out.println(hashCode());
 
             return result;
         });
