@@ -9,5 +9,7 @@ public class EvenMoreFancyOneExecutor {
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         IntStream.rangeClosed(1, 10).boxed().forEach(i -> executorService.submit(() -> System.out.println(i)));
+
+        executorService.shutdown();
     }
 }
