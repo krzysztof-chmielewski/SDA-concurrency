@@ -1,4 +1,4 @@
-package com.kchmielewski.sda.concurrency.task15;
+package com.kchmielewski.sda.concurrency.task16;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

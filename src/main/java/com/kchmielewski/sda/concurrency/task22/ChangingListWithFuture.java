@@ -1,4 +1,4 @@
-package com.kchmielewski.sda.concurrency.task21;
+package com.kchmielewski.sda.concurrency.task22;
 
 import java.util.ArrayList;
 import java.util.Collections;
