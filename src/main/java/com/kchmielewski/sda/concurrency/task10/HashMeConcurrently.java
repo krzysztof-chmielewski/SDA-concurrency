@@ -1,5 +1,6 @@
 package com.kchmielewski.sda.concurrency.task10;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,9 +10,21 @@ import java.util.stream.IntStream;
 public class HashMeConcurrently {
     public Map<Integer, Integer> createSquaresMap(int n) {
         Map<Integer, Integer> result = new ConcurrentHashMap<>();
-        List<Integer> numbers = IntStream.range(0, n).boxed().collect(Collectors.toList());
 
-        numbers.forEach(i -> new Thread(() -> result.put(i, i * i)).start());
+        List<Thread> threads = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            int finalI = i;
+            threads.add(new Thread(() -> result.put(finalI, finalI * finalI)));
+            threads.get(i).start();
+        }
+
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         return result;
     }
