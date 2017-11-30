@@ -23,7 +23,7 @@ public class WaitingForFutureThatWillNeverCome {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            System.out.println("Whoops, no change to get that future!");
+            System.out.println("Whoops, no chance to get that future!");
             e.printStackTrace();
         }
 
